@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+<main>
+
+    <article>
+        <h1>Formularzyk: </h1>
+        <form action="#" method="get">
+            <table>
+                <tbody>
+                <tr>
+                    <td>Nazwisko : </td>
+                    <td> <input type="text" name="nazwisko"
+                                title="Nazwisko musi zaczynać się Wielką literą, po niej musi nastąpić co najwyżej 25 liter małych"
+                                 pattern="^[A-ZŁĄŹŻĆĄŚ][a-zążśźćł]{1,25}$" placeholder="Kowalski" /> </td>
+                </tr>
+                <tr>
+                    <td>Wiek : </td>
+                    <td><input type="number" name="wiek" min="0" max="120" placeholder="18" /></td>
+                </tr>
+                <tr>
+                    <td>Państwo :</td>
+                    <td> <select name="panstwo">
+                        <option value="polska">Polska</option>
+                        <option value="inne">Inne</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Adres email :</td>
+                    <td> <input type="email" name="adres" placeholder="example@hosting.com"
+                                title="Przykładowy email : example@hosting.com"
+                                pattern=".{1,25}@\w{1,25}\.\w+$" /> </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <h3>Zamawaim kurs z języla</h3>
+            <input type="checkbox" name="check" value="php" /> PHP
+            <input type="checkbox" name="check" value="c/c++" /> C/C++
+            <input type="checkbox" name="check" value="java" /> Java
+            <input type="checkbox" name="check" value="hla" /> HLA
+            <br>
+            <h3>Sposób zapłaty</h3>
+            <input type="radio" name="zaplata" value="eurocard" /> Eurocard <br>
+            <input type="radio" name="zaplata" value="visa" /> Visa <br>
+            <input type="radio" name="zaplata" value="przelew" /> Przelew bankowy <br><br>
+            <input type="submit" value="Wyślij" />
+            <input type="reset" value="Wyczyść" />
+
+        </form>
+        <p th:text="${nazwisko} + ' ' + ${wiek} + ' ' + ${panstwo} + ' ' + ${adres} + ' ' + ${check} + ' ' + ${zaplata}" />
+    </article>
+    <footer>&copy;CP</footer>
+</main>
+</body>
+
+</html>
