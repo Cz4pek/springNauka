@@ -77,4 +77,25 @@ public class FormData{
     public void setPayment(String payment) {
         this.payment = payment;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder s = new StringBuilder();
+        s.append(this.getId());
+        s.append(" ");
+        s.append(this.getLasta_name());
+        s.append(" ");
+        s.append(this.getAge());
+        s.append(" ");
+        s.append(this.getCountry());
+        s.append(" ");
+        s.append(this.getEmail());
+        s.append(" ");
+        s.append(this.getTech());
+        s.append(" ");
+        s.append(this.getPayment());
+        s.append(" ");
+
+        return s.toString();
+    }
 }

@@ -51,13 +51,19 @@
             <input type="radio" name="zaplata" value="visa" /> Visa <br>
             <input type="radio" name="zaplata" value="przelew" /> Przelew bankowy <br><br>
             <input type="submit" value="Wyślij" />
+            <button onclick="location.href='http://localhost:8080/form/tech?tech=java'" type="button">Java</button>
+            <button onclick="location.href='http://localhost:8080/form/tech?tech=php'" type="button">Php</button>
+            <button onclick="location.href='http://localhost:8080/form/tech?tech=c%2Fc++'" type="button">C/C++</button>
             <button onclick="location.href='http://localhost:8080/form/all'" type="button">poka</button>
+            <button onclick="location.href='http://localhost:8080/form/statistics'" type="button">Statystyki</button>
             <input type="reset" value="Wyczyść" />
 
         </form>
         <ul th:each="record : ${records}">
             <li th:text="${record}"></li>
         </ul>
+        <p th:text="${count18}"> </p>
+        <p th:text="${count50}"> </p>
     </article>
     <footer>&copy;CP</footer>
 </main>
