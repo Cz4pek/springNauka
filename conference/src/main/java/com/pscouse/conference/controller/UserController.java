@@ -20,7 +20,7 @@ public class UserController {
         return user;
     }
 
-    @PostMapping
+    @PostMapping("/user")
     public User postUser(User user){
         System.out.println("User's first name: " + user.getFirstname());
         return user;

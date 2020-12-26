@@ -1,11 +1,19 @@
 package com.example.demo;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.internal.SessionImpl;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.ui.Model;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.LinkedList;
+import java.util.List;
 
 
 @Controller
@@ -33,7 +41,6 @@ public class FormController {
             languages = languages.trim();
             languages = languages.substring(0, languages.length()-1);
         }
-
         FormData form = new FormData();
         form.setLasta_name(nazwisko);
         form.setAge(Integer.parseInt(wiek));
@@ -43,6 +50,16 @@ public class FormController {
         form.setPayment(zaplata);
         formDataRepository.save(form);
         return "form";
+    }
+
+    private SessionFactory hibernateFactory;
+
+    @Autowired
+    public void setFactory(EntityManagerFactory factory) {
+        if(factory.unwrap(SessionFactory.class) == null){
+            throw new NullPointerException("factory is not a hibernate factory");
+        }
+        this.hibernateFactory = factory.unwrap(SessionFactory.class);
     }
 
     @GetMapping(path = "form/all")
@@ -69,6 +86,15 @@ public class FormController {
         }
         Object[] arr = records.toArray();
         model.addAttribute("records", arr);
+
+        Session session = hibernateFactory.openSession();
+        String hql = "FROM FormData E where E.age < 18";
+        Query query = session.createQuery(hql);
+        List results = query.list();
+        results.forEach(record ->{
+            FormData temp = (FormData)record;
+            System.out.println(temp.toString());
+        });
         return "form";
     }
 

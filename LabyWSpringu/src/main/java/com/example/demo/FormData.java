@@ -1,14 +1,15 @@
 package com.example.demo;
 
 import com.sun.istack.NotNull;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
+import javax.persistence.*;
 @Entity
 public class FormData{
+
 
 
     @Id
@@ -26,6 +27,8 @@ public class FormData{
     private  String tech;
     @NotNull
     private  String payment;
+
+
 
     public Integer getId() {
         return id;
